@@ -1,0 +1,28 @@
+{% extends "style_base.html" %}
+
+{% set inviteContent = get_flashed_messages()[0] %}
+{% set addressedTo = get_flashed_messages()[1] %}
+
+{% block content %}
+
+<style>
+</style>
+
+<script>
+var invitees = `{{addressedTo}}`;
+</script>
+
+<div class="application-content">
+
+<div class="invite-container">
+
+{{inviteContent}}
+
+</div>
+
+</div>
+
+<script src="{{url_for('static', filename='js/html2canvas.js')}}"></script>
+<script src="{{url_for('static', filename='js/style.js')}}"></script>
+
+{% endblock %}

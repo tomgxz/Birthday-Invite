@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+:root {
+    --color-1:#599bff;
+    --color-2:#1a6ff0;
+    --color-3:#000080;
+    --background:#f7f4e4;
+    --text-1:"Roboto", "Helvetica", "Arial", sans-serif;
+    --text-2:"Lexend", "Helvetica", "Arial", sans-serif;
+}
+
+.invite * {
+    position:relative;
+}
+
+.invite {
+    width:640px;
+    height:360px;
+    background-color:var(--background);
+    padding:16px;
+    display:flex;
+    flex-direction:column;
+}
+
+.invite-header {
+    width:100%;
+    display:flex;
+    flex-direction:column;
+}
+
+.header,.text {
+    width:fit-content;
+    font-weight:400;
+    font-size:10px;
+}
+
+.header {
+    font-family:var(--text-1);
+}
+
+.text {
+    font-family:var(--text-2);
+}
+
+.to-name {
+    align-self:flex-start;
+    margin-bottom:16px;
+}
+
+.to-name,.card-to-name {
+    text-align:left;
+    font-size:17px;
+    font-weight:600;
+}
+
+.has-invited-you,.card-has-invited-you {
+    font-size:26px;
+    font-weight:900;
+    text-align:right;
+}
+
+.the-party-is,.card-the-party-is {
+    font-size:21px;
+    font-weight:600;
+    text-align:right;
+}
+
+.has-invited-you,.the-party-is {
+    align-self:flex-end;
+}
+
+.invite-address,.invite-address-list,.invite-rsvp {
+    width:fit-content;
+}
+
+.invite-content {
+    height: 100%;
+    position:relative;
+    margin-top:16px;
+}
+
+.invite-address {
+    position:absolute;
+    bottom:25%;
+    right:5%;
+    text-align:right;
+    font-size:16px;
+    line-height:1.25;
+}
+
+.card-invite-address {
+    resize: none;
+}
+
+.invite-rsvp {
+    position:absolute;
+    bottom:0;
+    left:0;
+}
+
+.come-along-to {
+    font-weight:600;
+}
+
+.please-rsvp-to,.card-please-rsvp-to {
+  font-size:12px;
+  font-style: italic;
+  font-family: var(--text-1)
+}
+
+.invite-container {
+    display:flex;
+    flex-direction:column;
+    width:fit-content;
+}
+
+.card-text-input {
+    outline:none;
+    border:none;
+    background-color:transparent;
+    position:relative;
+    z-index:10;
+}
+
+.input-underline {
+    opacity:0;
+    width:100px;
+    display:block;
+    position:absolute;
+    background-color: var(--color-1);
+    width:calc(100% - 4px);
+    height:2px;
+    right:0;
+    bottom:0;
+    border-radius:1em;
+    transition: 60ms linear;
+    transition-property: width,opacity;
+}
+
+.card-to-name-underline,.card-please-rsvp-to-underline {
+    left:0;
+}
+
+bold {
+    font-weight:600;
+}

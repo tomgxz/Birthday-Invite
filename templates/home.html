@@ -1,0 +1,213 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+  .page, .application-content {
+    width:100vw;
+    height:100vh
+  }
+
+  .application-content {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-start;
+    padding-top:32px;
+  }
+
+  .application-input {
+      display:flex;
+      flex-direction:column;
+      width:fit-content;
+  }
+
+  .application-input field-option:not(:last-child) {
+    margin-bottom:8px;
+  }
+
+
+  .field-submit {
+      margin-top:32px;
+      align-self: center;
+  }
+
+  .field-options {
+      width:360px;
+      display:flex;
+      flex-direction:column;
+  }
+
+  .field-option:not(:last-child) {
+      margin-bottom:8px
+  }
+
+  .field-option {
+      display:flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+  }
+
+  .field-option .field-input-container {
+      display:flex;
+      flex-direction: row;
+  }
+
+  .field-option .field-input {
+      font-family: var(--font-body);
+  }
+
+  .field-option .field-input-container .eye-reveal,
+  .field-option .field-input-container .eye-spacer {
+      width:19px;
+      height:19px;
+      display:flex;
+      justify-content: center;
+      align-items: center;
+      margin-left:8px;
+  }
+
+  .field-option .field-input-container .eye-reveal:active {
+      color:var(--colors-secondary);
+  }
+
+  .field-warning {
+      color:#e63832;
+      margin-bottom:8px;
+  }
+
+  .pac-logo::after {
+    content:none!important;
+  }
+</style>
+
+<div class="application-content">
+
+    <div class="application-input">
+        <form class="field-options" method="post" action="/home/">
+
+          <div class="field-option field-option-event">
+              <h4 class="text italic">Event</h4>
+              <div class="field-input-container">
+                  <input class="field-input input primary small-text-input" id="input_event" placeholder="e.g. Trampolining @ [location]" name="event" type="event" autofocus>
+              </div>
+          </div>
+
+          <div class="field-option field-option-date">
+              <h4 class="text italic">Date</h4>
+              <div class="field-input-container">
+                  <input class="field-input input primary date-input" id="input_date" placeholder="Date" name="date" type="date" autofocus>
+              </div>
+          </div>
+
+          <div class="field-option field-option-time-1">
+              <h4 class="text italic">Arrival Time</h4>
+              <div class="field-input-container">
+                  <input class="field-input input primary time-input" id="input_time_1" placeholder="Arrival Time" name="time-1" type="time" autofocus>
+              </div>
+          </div>
+
+          <div class="field-option field-option-time-1">
+              <h4 class="text italic">Pickup Time</h4>
+              <div class="field-input-container">
+                  <input class="field-input input primary time-input" id="input_time_2" placeholder="Pickup Time" name="time-2" type="time" autofocus>
+              </div>
+          </div>
+
+          <div class="horizontal-separator" style="margin-top:8px;margin-bottom:16px;"></div>
+
+          <div class="field-option field-option-address-1">
+              <h4 class="text italic">Party Location</h4>
+              <div class="field-input-container">
+                  <input class="field-input input primary small-text-input" id="input_address_1" placeholder="Enter a Location" name="address-1" type="text" autofocus>
+              </div>
+          </div>
+
+          <div class="field-option field-option-address-2">
+              <h4 class="text italic"></h4>
+              <div class="field-input-container">
+                  <input class="field-input input primary small-text-input" id="input_address_2" placeholder="Address Line 2" name="s-2" type="text" autofocus>
+              </div>
+          </div>
+
+          <div class="field-option field-option-address-3">
+              <h4 class="text italic"></h4>
+              <div class="field-input-container">
+                  <input class="field-input input primary small-text-input" id="input_address_3" placeholder="Town/City" name="address-3" type="text" autofocus>
+              </div>
+          </div>
+
+          <div class="field-option field-option-address-4">
+              <h4 class="text italic"></h4>
+              <div class="field-input-container">
+                  <input class="field-input input primary small-text-input" id="input_address_4" placeholder="County/State" name="address-4" type="text" autofocus>
+              </div>
+          </div>
+
+          <div class="field-option field-option-address-5">
+              <h4 class="text italic"></h4>
+              <div class="field-input-container">
+                  <input class="field-input input primary small-text-input" id="input_address_5" placeholder="Postcode" name="address-5" type="text" autofocus>
+              </div>
+          </div>
+
+          <div class="field-option field-option-address-6">
+              <h4 class="text italic"></h4>
+              <div class="field-input-container">
+                  <input class="field-input input primary small-text-input" id="input_address_6" placeholder="Country" name="address-6" type="text" autofocus>
+              </div>
+          </div>
+
+          <div class="horizontal-separator" style="margin-top:8px;margin-bottom:16px;"></div>
+
+          <div class="field-option field-option-to">
+              <h4 class="text italic">To</h4>
+              <div class="field-input-container">
+                  <textarea class="field-input input primary large-text-input fixed-size" id="input_name" placeholder="Names of invitees, all on new lines" name="to" type="textarea" autofocus rows=1></textarea>
+              </div>
+          </div>
+
+          <div class="field-option field-option-from">
+              <h4 class="text italic">From</h4>
+              <div class="field-input-container">
+                  <input class="field-input input primary small-text-input" id="input_from" placeholder="Who's party is it?" name="from" type="from" autofocus>
+              </div>
+          </div>
+
+          <div class="field-option field-option-rsvp">
+              <h4 class="text italic">RSVP</h4>
+              <div class="field-input-container">
+                  <input class="field-input input primary small-text-input" id="input_rsvp" placeholder="Probably an email address" name="rsvp" type="rsvp" autofocus>
+              </div>
+          </div>
+
+          <div class="field-option field-option-rsvp-by">
+              <h4 class="text italic">RSVP By</h4>
+              <div class="field-input-container">
+                  <input class="field-input input primary date-input" id="input_rsvp_by" placeholder="Optional respond by" name="rsvp-by" type="date" autofocus>
+              </div>
+          </div>
+
+          <button class="field-submit btn primary rounded" type="submit">
+            <span class="btn-content text uppercase light bold">Generate!</span>
+          </button>
+
+        </form>
+    </div>
+
+    <div class="application-output">
+    </div>
+
+</div>
+
+<!-- <script src="{{url_for('static', filename='js/google.js')}}"></script>-->
+
+<script src="{{url_for('static', filename='js/address.js')}}"></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&callback=initAutocomplete&key=AIzaSyB-Duc0QpPwzblemOXYn06tK3tdmxUnasU"></script>
+
+<script src="{{url_for('static', filename='js/home.js')}}"></script>
+
+
+{% endblock %}
