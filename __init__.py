@@ -47,18 +47,18 @@ class BirthdayInvite():
             }
 
             invite = Markup(f"""
-<div class="invite">
-    <div class="invite-header">
-        <h2 class="header to-name">To [NAME]</h2>
-        <h1 class="header has-invited-you">{fields['from'].title()} has invited you to a party on {fields['date']}!</h1>
-        <h3 class="text the-party-is">The party is {fields['event']} from {fields['time-1']} to {fields['time-2']}</h3>
+<div class="--invite">
+    <div class="--invite-header">
+        <h2 class="--header --to-name" data-panel-editable>To [NAME]</h2>
+        <h1 class="--header --has-invited-you" data-panel-editable>{fields['from'].title()} has invited you to a party on {fields['date']}!</h1>
+        <h3 class="--text --the-party-is" data-panel-editable>The party is {fields['event']} from {fields['time-1']} to {fields['time-2']}</h3>
     </div>
 
-    <div class="invite-content">
-        <div class="invite-address text"><bold>Come along to:</bold><br>{fields['address-1']+"<br>" if fields['address-1'] != None and fields['address-1'] != '' else '' }{fields['address-2']+"<br>" if fields['address-2'] != None and fields['address-2'] != '' else '' }{fields['address-3']+"<br>" if fields['address-3'] != None and fields['address-3'] != '' else '' }{fields['address-4']+"<br>" if fields['address-4'] != None and fields['address-4'] != '' else '' }{fields['address-5']+"<br>" if fields['address-5'] != None and fields['address-5'] != '' else '' }{fields['address-6']+"<br>" if fields['address-6'] != None and fields['address-6'] != '' else '' }</div>
-        
-        <div class="invite-rsvp">
-            <h4 class="text please-rsvp-to">Please RSVP to {fields['rsvp']} by {fields['rsvp-by']}</h4>
+    <div class="--invite-content">
+        <div class="--invite-address --text" data-panel-editable><bold>Come along to:</bold><br>{fields['address-1']+"<br>" if fields['address-1'] != None and fields['address-1'] != '' else '' }{fields['address-2']+"<br>" if fields['address-2'] != None and fields['address-2'] != '' else '' }{fields['address-3']+"<br>" if fields['address-3'] != None and fields['address-3'] != '' else '' }{fields['address-4']+"<br>" if fields['address-4'] != None and fields['address-4'] != '' else '' }{fields['address-5']+"<br>" if fields['address-5'] != None and fields['address-5'] != '' else '' }{fields['address-6']+"<br>" if fields['address-6'] != None and fields['address-6'] != '' else '' }</div>
+
+        <div class="--invite-rsvp">
+            <h4 class="--text --please-rsvp-to" data-panel-editable>Please RSVP to {fields['rsvp']} by {fields['rsvp-by']}</h4>
         </div>
     </div>
 </div>""")

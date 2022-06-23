@@ -12,17 +12,51 @@
 var invitees = `{{addressedTo}}`;
 </script>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <div class="application-content">
 
-<div class="invite-container">
+  <div class="--invite-container">
+    {{inviteContent}}
+  </div>
 
-{{inviteContent}}
+  <div class="vertical-separator">
+  </div>
+
+  <div class="card">
+      <div class="card-content">
+          <div class="card-item one">
+              <div class="text large">Click the text to edit it</div>
+              <div class="text small">To auto-generate the invites for different people, use [NAME] to refer to the invitee. To restore the original, refresh the page. Eventually there will be an undo function.</div>
+          </div>
+
+          <button id="element_selector_btn" class="element-selector-btn btn primary rounded thin m-s-b">
+              <span class="btn-content text uppercase light bold">Select Element to Edit</span>
+          </button>
+
+          <div class="card-item two">
+              <div class="card-item-column style-options one">
+                  <div class="style-option one">
+                      <div class="input-dropdown" id="style_option_font">
+                          <input type="text" class="input primary small-text-input style-option-input style-option-text-input" placeholder="Search Fonts" id="style_option_font_search" name="style-option-font-search">
+                      </div>
+                  </div>
+              </div>
+              <div class="card-item-column style-options two">
+              </div>
+          </div>
+      </div>
+  </div>
 
 </div>
 
-</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
 
 <script src="{{url_for('static', filename='js/html2canvas.js')}}"></script>
+<script src="{{url_for('static', filename='js/input-dropdown.js')}}"></script>
+<script src="{{url_for('static', filename='js/fonts.js')}}"></script>
+
 <script src="{{url_for('static', filename='js/style.js')}}"></script>
 
 {% endblock %}

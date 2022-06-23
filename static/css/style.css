@@ -10,11 +10,11 @@
     --text-2:"Lexend", "Helvetica", "Arial", sans-serif;
 }
 
-.invite * {
+.--invite * {
     position:relative;
 }
 
-.invite {
+.--invite {
     width:640px;
     height:360px;
     background-color:var(--background);
@@ -23,64 +23,68 @@
     flex-direction:column;
 }
 
-.invite-header {
+.--invite-header {
     width:100%;
     display:flex;
     flex-direction:column;
 }
 
-.header,.text {
+.--header,.--text {
     width:fit-content;
     font-weight:400;
     font-size:10px;
 }
 
-.header {
+.--header {
     font-family:var(--text-1);
 }
 
-.text {
+.--text {
     font-family:var(--text-2);
 }
 
-.to-name {
+.--to-name {
     align-self:flex-start;
     margin-bottom:16px;
 }
 
-.to-name,.card-to-name {
+.--to-name,.--card-to-name {
     text-align:left;
     font-size:17px;
     font-weight:600;
 }
 
-.has-invited-you,.card-has-invited-you {
+.--has-invited-you {
+    margin-bottom: 8px;
+}
+
+.--has-invited-you,.--card-has-invited-you {
     font-size:26px;
     font-weight:900;
     text-align:right;
 }
 
-.the-party-is,.card-the-party-is {
+.--the-party-is,.--card-the-party-is {
     font-size:21px;
     font-weight:600;
     text-align:right;
 }
 
-.has-invited-you,.the-party-is {
+.--has-invited-you,.--the-party-is {
     align-self:flex-end;
 }
 
-.invite-address,.invite-address-list,.invite-rsvp {
+.--invite-address,.--invite-address-list,.--invite-rsvp {
     width:fit-content;
 }
 
-.invite-content {
+.--invite-content {
     height: 100%;
     position:relative;
     margin-top:16px;
 }
 
-.invite-address {
+.--invite-address {
     position:absolute;
     bottom:25%;
     right:5%;
@@ -89,33 +93,36 @@
     line-height:1.25;
 }
 
-.card-invite-address {
+.--card-invite-address {
     resize: none;
+    text-align:right;
+    font-size:16px;
+    line-height:1.25;
 }
 
-.invite-rsvp {
+.--invite-rsvp {
     position:absolute;
     bottom:0;
     left:0;
 }
 
-.come-along-to {
+.--come-along-to {
     font-weight:600;
 }
 
-.please-rsvp-to,.card-please-rsvp-to {
+.--please-rsvp-to,.--card-please-rsvp-to {
   font-size:12px;
   font-style: italic;
   font-family: var(--text-1)
 }
 
-.invite-container {
+.--invite-container {
     display:flex;
     flex-direction:column;
     width:fit-content;
 }
 
-.card-text-input {
+.--card-text-input {
     outline:none;
     border:none;
     background-color:transparent;
@@ -123,7 +130,7 @@
     z-index:10;
 }
 
-.input-underline {
+.--input-underline {
     opacity:0;
     width:100px;
     display:block;
@@ -138,10 +145,120 @@
     transition-property: width,opacity;
 }
 
-.card-to-name-underline,.card-please-rsvp-to-underline {
+.--card-to-name-underline,.--card-please-rsvp-to-underline {
     left:0;
 }
 
 bold {
     font-weight:600;
+}
+
+.application-content {
+    display:flex;
+    flex-direction:row;
+    flex-wrap:nowrap;
+    height:360px;
+}
+
+.vertical-separator {
+    margin-left:16px;
+    margin-right:16px;
+    height: 95%;
+    align-self: center;
+    border-radius: 1em;
+    border-width:4px;
+}
+
+.card {
+    height:95%;
+    align-self:center;
+    background-color:var(--colors-grey-100);
+    padding:16px;
+    width:380px;
+}
+
+.card-content {
+    align-items:center;
+}
+
+.card-item {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width:100%;
+}
+
+.card-item.one {
+    margin-bottom: var(--margin-s);
+}
+
+.card-item.two {
+  height:calc(310px - 72.67px - 32.13px)
+}
+
+.card-item-column {
+    width:50%;
+    height:100%;
+}
+
+.card-item-column * {
+    max-width:100%;
+}
+
+.input-dropdown-options-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #767676;
+    border-radius: 4px;
+    background-color:#ffffff;
+    font-family:var(--font-body);
+    font-size:14px;
+    color: rgb(117, 117, 117);
+}
+
+.input-dropdown-option {
+    width:100%;
+    border-color:inherit;
+    border-style:inherit;
+    border-width:0px;
+    padding:4px 2px;
+    cursor:pointer;
+    transition:80ms linear;
+    transition-property: background-color;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: center;
+}
+
+.input-dropdown-option:first-of-type {
+    border-top-left-radius:2px;
+    border-top-right-radius:2px;
+}
+
+.input-dropdown-option:last-of-type {
+    border-bottom-left-radius:2px;
+    border-bottom-right-radius:2px;
+}
+
+.input-dropdown-option:hover {
+    background-color:var(--colors-grey-100);
+}
+
+.input-dropdown-option:not(:last-of-type) {
+    border-bottom-width:2px;
+}
+
+.input-dropdown-option-icon {
+    font-size:13px;
+    margin-right:4px;
+}
+
+.input-dropdown-option-text {
+    font-weight:500;
 }
