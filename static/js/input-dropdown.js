@@ -22,6 +22,13 @@ function initInputDropdown(query,options,triggerVisible=false, triggerElement=nu
             optionsContainer.style.visibliliy="hidden";
             optionsContainer.style.opacity=0
         });
+        document.body.addEventListener("click",event => function(){
+            var boundingBox = element.getBoundingClientRect();
+            if (!(event.x > boundingBox.left && event.x < boundingBox.right && event.y > boundingBox.top && event.y < boundingBox.bottom)) {
+                  optionsContainer.style.visibliliy="hidden";
+                  optionsContainer.style.opacity=0
+            }
+        });
     }
     return element
 }
@@ -41,6 +48,7 @@ function initInputDropdownFilter(query,options,filterElement,functionCall,trigge
     });
     var optionsElements = optionsContainer.querySelectorAll(".input-dropdown-option")
     if (triggerVisible) {
+
         optionsContainer.style.visibliliy="hidden";
         optionsContainer.style.opacity=0;
         document.querySelector(triggerElement).addEventListener(triggerType,function(){
@@ -50,6 +58,13 @@ function initInputDropdownFilter(query,options,filterElement,functionCall,trigge
         document.querySelector(triggerElement).addEventListener(triggerTypeInverse,function(){
             optionsContainer.style.visibliliy="hidden";
             optionsContainer.style.opacity=0
+        });
+        document.body.addEventListener("click",event => {
+            var boundingBox = element.getBoundingClientRect();
+            if (!(event.x > boundingBox.left && event.x < boundingBox.right && event.y > boundingBox.top && event.y < boundingBox.bottom)) {
+                  optionsContainer.style.visibliliy="hidden";
+                  optionsContainer.style.opacity=0
+            }
         });
     }
     filterElement = document.querySelector(filterElement);

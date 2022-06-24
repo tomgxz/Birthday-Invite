@@ -89,6 +89,18 @@ function elementSelected() {
     if (!selectionActive) {return}
     selectedElement=this;
     deactivateSelection();
+    selectedElement.setAttribute("data-panel-editing","");
+    document.getElementById("element_selector_btn").querySelector(".btn-content").innerText="Deselect Element";
+    elementSelectorBtn.addEventListener("click",deselectElement);
+    elementSelectorBtn.removeEventListener("click",activateSelection);
+}
+
+function deselectElement() {
+    selectedElement.removeAttribute("data-panel-editing");
+    document.getElementById("element_selector_btn").querySelector(".btn-content").innerText="Select Element to Edit";
+    elementSelectorBtn.removeEventListener("click",deselectElement);
+    elementSelectorBtn.addEventListener("click",activateSelection);
+    selectedElement=null;
 }
 
 function deactivateSelection() {
@@ -108,41 +120,16 @@ function deactivateSelection() {
     selectionActive=false;
 }
 
-invitees = invitees.replaceAll("\n",",")
-invitees = invitees.slice(0,invitees.length).split(",").filter(function(v,i,a){return v != "";});
-var canvasData;
-
-var hasInvitedYou = document.querySelector(".--has-invited-you");
-var toName = document.querySelector(".--to-name");
-var thePartyIs = document.querySelector(".--the-party-is");
-var inviteAddress = document.querySelector(".--invite-address");
-var pleaseRsvpTo = document.querySelector(".--please-rsvp-to");
-
-initTextEditor(hasInvitedYou,"card-has-invited-you","--header --card-text-input","",false)
-initTextEditor(toName,"card-to-name","--header --card-text-input","",false)
-initTextEditor(thePartyIs,"card-the-party-is","--text --card-text-input","",false)
-initTextAreaEditor(inviteAddress,"card-invite-address","--text --card-text-input","",true)
-initTextEditor(pleaseRsvpTo,"card-please-rsvp-to","--header --card-text-input","",false)
-
-var elementSelectorBtn = document.getElementById("element_selector_btn")
-var canEdit = document.querySelectorAll("[data-panel-editable]")
-var selectionActive = false;
-var selectedElement;
-
-elementSelectorBtn.addEventListener("click",activateSelection)
-
-var fonts = fontsDict["items"];
-
-var fontDropdownItem = `<span class="input-dropdown-option-icon"><i class="faicon fa-regular fa-font-case"></i></span><span class="input-dropdown-option-text">[text]</span>`
-var fontDropdownArray = []
-
-fonts.forEach(font => {
-    fontDropdownArray.push(fontDropdownItem.replace("[text]",font["family"]))
-})
-
 function fontOptionsListener() {
     fontDropdownOptions = [];
     fontDropdownElement.querySelectorAll(".input-dropdown-option").forEach(e=>{ if (e.style.display != "none") { fontDropdownOptions.push(e) }})
+    if (fontDropdownOptions.length == 0) {
+       fontDropdownElement.style.visibliliy="hidden";
+       fontDropdownElement.style.opacity=0;
+    } else {
+        fontDropdownElement.style.visibliliy="visible";
+        fontDropdownElement.style.opacity=1;
+    }
     fontDropdownOptions.forEach(e=>{
         fontName = e.querySelector(".input-dropdown-option-text").innerText.toLowerCase()
         var i=0;var font;var link;
@@ -167,13 +154,37 @@ function fontOptionsListener() {
     })
 }
 
-var linkedFontFamilies=[];
+var hasInvitedYou = document.querySelector(".--has-invited-you");
+var toName = document.querySelector(".--to-name");
+var thePartyIs = document.querySelector(".--the-party-is");
+var inviteAddress = document.querySelector(".--invite-address");
+var pleaseRsvpTo = document.querySelector(".--please-rsvp-to");
+var elementSelectorBtn = document.getElementById("element_selector_btn");
+var canEdit = document.querySelectorAll("[data-panel-editable]");
+var fontDropdownItem = `<span class="input-dropdown-option-icon"><i class="faicon fa-regular fa-font-case"></i></span><span class="input-dropdown-option-text">[text]</span>`;
+var fonts = fontsDict["items"];
+var selectionActive = false;
+var fontDropdownArray = [];
+var linkedFontFamilies = [];
+var fontDropdownOptions = [];
+var selectedElement, canvasData, fontDropdownElement;
+
+invitees = invitees.replaceAll("\n",",")
+invitees = invitees.slice(0,invitees.length).split(",").filter(function(v,i,a){return v != "";});
+
+initTextEditor(hasInvitedYou,"card-has-invited-you","--header --card-text-input","",false)
+initTextEditor(toName,"card-to-name","--header --card-text-input","",false)
+initTextEditor(thePartyIs,"card-the-party-is","--text --card-text-input","",false)
+initTextAreaEditor(inviteAddress,"card-invite-address","--text --card-text-input","",true)
+initTextEditor(pleaseRsvpTo,"card-please-rsvp-to","--header --card-text-input","",false)
+
+elementSelectorBtn.addEventListener("click",activateSelection)
+
+fonts.forEach(font => { fontDropdownArray.push(fontDropdownItem.replace("[text]",font["family"])) });
 
 initInputDropdownFilter("#style_option_font",fontDropdownArray,"#style_option_font_search",fontOptionsListener,false,"#style_option_font_search");
 
-var fontDropdownElement = document.querySelector("#style_option_font .input-dropdown-options-container")
-var fontDropdownOptions = [];
-
+fontDropdownElement = document.querySelector("#style_option_font .input-dropdown-options-container");
 
 html2canvas(document.querySelector(".invite-container")).then(function(canvas) {
     canvasData = canvas.toDataURL("image/png",1);
