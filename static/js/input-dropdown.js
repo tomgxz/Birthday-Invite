@@ -16,18 +16,12 @@ function initInputDropdown(query,options,triggerVisible=false, triggerElement=nu
         optionsContainer.style.opacity=0;
         document.querySelector(triggerElement).addEventListener(triggerType,function(){
             optionsContainer.style.visibliliy="visible";
-            optionsContainer.style.opacity=1
+            optionsContainer.style.opacity=1;
         });
         document.querySelector(triggerElement).addEventListener(triggerTypeInverse,function(){
             optionsContainer.style.visibliliy="hidden";
-            optionsContainer.style.opacity=0
-        });
-        document.body.addEventListener("click",event => function(){
-            var boundingBox = element.getBoundingClientRect();
-            if (!(event.x > boundingBox.left && event.x < boundingBox.right && event.y > boundingBox.top && event.y < boundingBox.bottom)) {
-                  optionsContainer.style.visibliliy="hidden";
-                  optionsContainer.style.opacity=0
-            }
+            optionsContainer.style.opacity=0;
+            filterElement.value="";
         });
     }
     return element
@@ -48,23 +42,16 @@ function initInputDropdownFilter(query,options,filterElement,functionCall,trigge
     });
     var optionsElements = optionsContainer.querySelectorAll(".input-dropdown-option")
     if (triggerVisible) {
-
         optionsContainer.style.visibliliy="hidden";
         optionsContainer.style.opacity=0;
         document.querySelector(triggerElement).addEventListener(triggerType,function(){
             optionsContainer.style.visibliliy="visible";
-            optionsContainer.style.opacity=1
+            optionsContainer.style.opacity=1;
         });
         document.querySelector(triggerElement).addEventListener(triggerTypeInverse,function(){
             optionsContainer.style.visibliliy="hidden";
-            optionsContainer.style.opacity=0
-        });
-        document.body.addEventListener("click",event => {
-            var boundingBox = element.getBoundingClientRect();
-            if (!(event.x > boundingBox.left && event.x < boundingBox.right && event.y > boundingBox.top && event.y < boundingBox.bottom)) {
-                  optionsContainer.style.visibliliy="hidden";
-                  optionsContainer.style.opacity=0
-            }
+            optionsContainer.style.opacity=0;
+            filterElement.value="";
         });
     }
     filterElement = document.querySelector(filterElement);
@@ -93,6 +80,5 @@ function initInputDropdownFilter(query,options,filterElement,functionCall,trigge
         functionCall();
 
     });
-
     return element
 }

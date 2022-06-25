@@ -93,6 +93,8 @@ function elementSelected() {
     document.getElementById("element_selector_btn").querySelector(".btn-content").innerText="Deselect Element";
     elementSelectorBtn.addEventListener("click",deselectElement);
     elementSelectorBtn.removeEventListener("click",activateSelection);
+    fontSelectionDropdownSearch.removeAttribute("disabled");
+    formattingSelectionActive = true;
 }
 
 function deselectElement() {
@@ -100,7 +102,9 @@ function deselectElement() {
     document.getElementById("element_selector_btn").querySelector(".btn-content").innerText="Select Element to Edit";
     elementSelectorBtn.removeEventListener("click",deselectElement);
     elementSelectorBtn.addEventListener("click",activateSelection);
+    fontSelectionDropdownSearch.setAttribute("disabled","");
     selectedElement=null;
+    formattingSelectionActive=false;
 }
 
 function deactivateSelection() {
@@ -161,32 +165,35 @@ var inviteAddress = document.querySelector(".--invite-address");
 var pleaseRsvpTo = document.querySelector(".--please-rsvp-to");
 var elementSelectorBtn = document.getElementById("element_selector_btn");
 var canEdit = document.querySelectorAll("[data-panel-editable]");
+var fontSelectionDropdownSearch = document.getElementById("style_option_font_search");
 var fontDropdownItem = `<span class="input-dropdown-option-icon"><i class="faicon fa-regular fa-font-case"></i></span><span class="input-dropdown-option-text">[text]</span>`;
 var fonts = fontsDict["items"];
 var selectionActive = false;
+var formattingSelectionActive = false;
 var fontDropdownArray = [];
 var linkedFontFamilies = [];
 var fontDropdownOptions = [];
 var selectedElement, canvasData, fontDropdownElement;
 
-invitees = invitees.replaceAll("\n",",")
+invitees = invitees.replaceAll("\n",",");
 invitees = invitees.slice(0,invitees.length).split(",").filter(function(v,i,a){return v != "";});
 
-initTextEditor(hasInvitedYou,"card-has-invited-you","--header --card-text-input","",false)
-initTextEditor(toName,"card-to-name","--header --card-text-input","",false)
-initTextEditor(thePartyIs,"card-the-party-is","--text --card-text-input","",false)
-initTextAreaEditor(inviteAddress,"card-invite-address","--text --card-text-input","",true)
-initTextEditor(pleaseRsvpTo,"card-please-rsvp-to","--header --card-text-input","",false)
+initTextEditor(hasInvitedYou,"card-has-invited-you","--header --card-text-input","",false);
+initTextEditor(toName,"card-to-name","--header --card-text-input","",false);
+initTextEditor(thePartyIs,"card-the-party-is","--text --card-text-input","",false);
+initTextAreaEditor(inviteAddress,"card-invite-address","--text --card-text-input","",true);
+initTextEditor(pleaseRsvpTo,"card-please-rsvp-to","--header --card-text-input","",false);
 
-elementSelectorBtn.addEventListener("click",activateSelection)
+elementSelectorBtn.addEventListener("click",activateSelection);
 
 fonts.forEach(font => { fontDropdownArray.push(fontDropdownItem.replace("[text]",font["family"])) });
 
-initInputDropdownFilter("#style_option_font",fontDropdownArray,"#style_option_font_search",fontOptionsListener,false,"#style_option_font_search");
+initInputDropdownFilter("#style_option_font",fontDropdownArray,"#style_option_font_search",fontOptionsListener,true,"#style_option_font_search");
 
 fontDropdownElement = document.querySelector("#style_option_font .input-dropdown-options-container");
+fontSelectionDropdownSearch.setAttribute("disabled","")
 
-html2canvas(document.querySelector(".invite-container")).then(function(canvas) {
-    canvasData = canvas.toDataURL("image/png",1);
-    //document.body.innerHTML += '<img src="'+canvasData+'"/>';
-});
+//html2canvas(document.querySelector(".invite-container")).then(function(canvas) {
+//    canvasData = canvas.toDataURL("image/png",1);
+//    document.body.innerHTML += '<img src="'+canvasData+'"/>';
+//});
