@@ -8,7 +8,7 @@ var addressField6 = document.getElementById("input_address_6");
 var addressFields = [addressField1,addressField2,addressField3,addressField4,addressField5,addressField6]
 
 function initAutocomplete() {
-
+    console.log("initAutocomplete starting...")
     autoComplete = new google.maps.places.Autocomplete(addressField1, {
         componentRestrictions: { country: ["us","ca","uk"] },
         fields: ["address_components","geometry"],
@@ -16,9 +16,11 @@ function initAutocomplete() {
 
     autoComplete.addListener("place_changed",fillInAddress);
 
+    console.log("initAutocomplete finished")
 }
 
 function fillInAddress() {
+    console.log("fillInAddress starting...")
     var place=autoComplete.getPlace();
     var address1="";
     var postcode="";
@@ -51,6 +53,8 @@ function fillInAddress() {
     addressField5.value=postcode;
 
     addressField2.focus()
+
+    console.log("fillInAddress finished")
 }
 
 document.getElementById("input_name").focus()

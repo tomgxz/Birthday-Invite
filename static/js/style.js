@@ -155,6 +155,10 @@ function fontOptionsListener() {
             e.style.fontFamily = font["family"];
         }
 
+        e.addEventListener("click",e=>{
+            selectedElement.style.fontFamily=fontName
+        })
+
     })
 }
 

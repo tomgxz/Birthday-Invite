@@ -7,7 +7,8 @@ google.maps = google.maps || {};
     };
     google.maps.Load = function(apiLoad) {
         delete google.maps.Load;
-        apiLoad([0.009999999776482582, [null, [
+        apiLoad(
+          [0.009999999776482582, [null, [
                     ["https://khms0.googleapis.com/kh?v=927\u0026hl=en-GB\u0026", "https://khms1.googleapis.com/kh?v=927\u0026hl=en-GB\u0026"], null, null, null, 1, "927", ["https://khms0.google.com/kh?v=927\u0026hl=en-GB\u0026", "https://khms1.google.com/kh?v=927\u0026hl=en-GB\u0026"]
                 ], null, null, null, null, [
                     ["https://cbks0.googleapis.com/cbk?", "https://cbks1.googleapis.com/cbk?"]
